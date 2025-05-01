@@ -3,12 +3,6 @@ const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
-    fullName: {
-      type: String,
-      trim: true,
-      maxlength: [100, "Full name cannot exceed 100 characters"],
-      required: true,
-    },
     email: {
       type: String,
       required: [true, "Email is required"],
