@@ -15,10 +15,11 @@ const createRecipe = async (req, res) => {
     const momTip = getMatchValue(/Mom's Tip:\*?\s*(.*)/i);
 
     const caloriesMatch = recipe.match(/Calories:\*?\s*~?\s*(\d+[-–]?\d*)\s*kcal/i);
-    const proteinMatch = recipe.match(/Protein:\*?\s*~?\s*(\d+[-–]?\d*)\s*grams/i);
-    const carbsMatch = recipe.match(/Carbohydrates:\*?\s*~?\s*(\d+[-–]?\d*)\s*grams/i);
-    const fatsMatch = recipe.match(/Fats:\*?\s*~?\s*(\d+[-–]?\d*)\s*grams/i);
-    const fiberMatch = recipe.match(/Fiber:\*?\s*~?\s*(\d+[-–]?\d*)\s*grams/i);
+    const proteinMatch = recipe.match(/Protein:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
+    const carbsMatch = recipe.match(/Carbohydrates:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
+    const fatsMatch = recipe.match(/Fats:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
+    const fiberMatch = recipe.match(/Fibre|Fiber:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
+    
 
     const calories = caloriesMatch ? caloriesMatch[1] : "Unknown";
 

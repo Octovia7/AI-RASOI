@@ -17,9 +17,11 @@ app.use(morgan("dev"));
 const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 const imageRoutes = require("./routes/imageRoutes");
+const favouriteRoutes = require("./routes/favouriteRoutes");
 app.use("/api/auth", authRoutes);
 app.use("/api/recipe",recipeRoutes);
 app.use("/api/images",imageRoutes);
+app.use("/api/favourites", favouriteRoutes);
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {

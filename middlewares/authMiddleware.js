@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 
 const JWT_SECRET = process.env.JWT_SECRET || "your_jwt_secret_key";
 
-const verifyToken = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
@@ -27,4 +27,4 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+module.exports = authenticate;
