@@ -19,7 +19,6 @@ const createRecipe = async (req, res) => {
     const carbsMatch = recipe.match(/Carbohydrates:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
     const fatsMatch = recipe.match(/Fats:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
     const fiberMatch = recipe.match(/Fibre|Fiber:\s*(?:~|Approximately)?\s*(\d+[-–]?\d*)\s*grams/i);
-    
 
     const calories = caloriesMatch ? caloriesMatch[1] : "Unknown";
 
@@ -44,7 +43,20 @@ const createRecipe = async (req, res) => {
     const newRecipe = new Recipe(recipeData);
     await newRecipe.save();
 
-    res.status(201).json({ success: true, recipe: newRecipe });
+    // Respond with full recipe data, including _id
+    res.status(201).json({
+      success: true,
+      recipe: {
+        _id: newRecipe._id,
+        title: newRecipe.title,
+        spiceLevel: newRecipe.spiceLevel,
+        calories: newRecipe.calories,
+        regionalStyle: newRecipe.regionalStyle,
+        momTip: newRecipe.momTip,
+        macronutrients: newRecipe.macronutrients,
+        fullText: newRecipe.recipe,
+      }
+    });
 
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
