@@ -18,10 +18,15 @@ const authRoutes = require("./routes/authRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
 const imageRoutes = require("./routes/imageRoutes");
 const favouriteRoutes = require("./routes/favouriteRoutes");
+const posts =  require("./routes/posts");
+// const postInteractionsRoutes = require('./routes/postInteractions');
+// app.use('/api/posts', postInteractionsRoutes);
+
 app.use("/api/auth", authRoutes);
 app.use("/api/recipe",recipeRoutes);
 app.use("/api/images",imageRoutes);
 app.use("/api/favourites", favouriteRoutes);
+app.use("/api/post",posts);
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {

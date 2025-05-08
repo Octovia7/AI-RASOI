@@ -1,18 +1,24 @@
 const FavouriteRecipe = require("../models/FavouriteRecipe");
 
 const addToFavourites = async (req, res) => {
-  const { recipeId } = req.body;
-  const userId = req.user.id; // assuming you're using JWT auth middleware
-
-  // Check if recipeId is provided
+  console.log("Request Body:", req.body); // Log the request body to ensure we have the correct structure
+  
+  // Destructure to get the recipe object
+  const { recipe } = req.body;
+  
+  // Check if the recipe object exists and if it contains _id
+  const recipeId = recipe ? recipe._id : null;
+  
   if (!recipeId) {
     return res.status(400).json({ message: "Recipe ID is required" });
   }
 
+  const userId = req.user.id;  // assuming you are using JWT auth middleware to get user id
+
   try {
     // Check if the recipe is already in the user's favourites
     const exists = await FavouriteRecipe.findOne({ user: userId, recipe: recipeId });
-    
+
     if (exists) {
       return res.status(400).json({ message: "Recipe is already in your favourites" });
     }
@@ -29,8 +35,10 @@ const addToFavourites = async (req, res) => {
   }
 };
 
+
 const removeFromFavourites = async (req, res) => {
-  const { recipeId } = req.body;
+  const { recipe } = req.body;  // Destructuring to get the full recipe object
+  const recipeId = recipe ? recipe._id : null;  // Extract the recipe ID safely
   const userId = req.user.id;
 
   // Check if recipeId is provided
@@ -80,4 +88,4 @@ const getFavourites = async (req, res) => {
   }
 };
 
-module.exports = { addToFavourites, getFavourites, removeFromFavourites };
+module.exports = { addToFavourites, removeFromFavourites, getFavourites };

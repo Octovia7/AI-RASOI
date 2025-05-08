@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    profileImage: {
+      type: String,
+      default: null, // will store Cloudinary URL or local path
+    },
     otp: {
       code: { type: String, default: null },
       expiresAt: { type: Date, default: null },
