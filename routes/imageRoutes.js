@@ -1,10 +1,12 @@
-// routes/imageRoutes.js
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { uploadImage } = require("../controllers/imageController");
-const upload = require("../middlewares/upload");
-const authenticate = require("../middlewares/authMiddleware");
+const authenticate = require('../middlewares/authMiddleware');
+const upload = require('../middlewares/upload'); // multer with Cloudinary
+const { uploadProfileImage } = require('../controllers/imageController');
 
-router.post("/upload", authenticate, upload.single("image"), uploadImage);
+// PUT /api/users/profile-image
+router.put('/profile-image', authenticate, upload.single('image'), uploadProfileImage);
+
+module.exports = router;
 
 module.exports = router;

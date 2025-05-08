@@ -24,7 +24,7 @@ app.use('/api/posts', postInteractionsRoutes);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/recipe",recipeRoutes);
-app.use("/api/images",imageRoutes);
+app.use("/api/upload",imageRoutes);
 app.use("/api/favourites", favouriteRoutes);
 app.use("/api/post",posts);
 // MongoDB Connection
