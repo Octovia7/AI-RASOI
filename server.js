@@ -19,8 +19,8 @@ const recipeRoutes = require("./routes/recipeRoutes");
 const imageRoutes = require("./routes/imageRoutes");
 const favouriteRoutes = require("./routes/favouriteRoutes");
 const posts =  require("./routes/posts");
-// const postInteractionsRoutes = require('./routes/postInteractions');
-// app.use('/api/posts', postInteractionsRoutes);
+const postInteractionsRoutes = require('./routes/postInteractions');
+app.use('/api/posts', postInteractionsRoutes);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/recipe",recipeRoutes);
