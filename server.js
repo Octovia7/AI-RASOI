@@ -29,7 +29,7 @@ app.use("/api/favourites", favouriteRoutes);
 app.use("/api/post",posts);
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect("mongodb+srv://Rudra:12345@cluster0.k24oa.mongodb.net/AI-RASOI?retryWrites=true&w=majority&appName=Cluster0", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
